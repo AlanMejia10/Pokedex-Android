@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Pokedex</string>
+    <string name="no_pokemon_image">Whoops! looks like this pokemon is missing</string>
+</resources>
