@@ -35,11 +35,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:id="@+id/pokemonImg"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
                 android:contentDescription="@string/no_pokemon_image"
                 android:padding="8dp"
-                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/masterball" />
 
             <LinearLayout
@@ -54,9 +54,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Pokemon Name"
-                    android:textSize="20sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    android:textColor="#FEBD08"/>
+                    android:textColor="@color/title"/>
 
                 <TextView
                     android:id="@+id/pokemonId"
@@ -65,7 +65,8 @@
                     android:text="id: "
                     android:layout_marginTop="8dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/baseExperience"
@@ -74,7 +75,8 @@
                     android:text="Base experience: "
                     android:layout_marginTop="8dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/weight"
@@ -83,7 +85,8 @@
                     android:text="Weight: "
                     android:layout_marginTop="8dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 
@@ -97,6 +100,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/btnNewPokemon"
                     android:text="Catch a new pokemon"/>
             </LinearLayout>
         </LinearLayout>
