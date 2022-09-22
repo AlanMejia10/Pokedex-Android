@@ -1,8 +1,6 @@
 package com.alanxmejia.pokedex.view
 
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.alanxmejia.pokedex.Utils.Utils
 import com.alanxmejia.pokedex.databinding.ActivityMainBinding
@@ -13,22 +11,27 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import retrofit2.Response
 import retrofit2.Retrofit
+import java.util.Timer
+import java.util.TimerTask
+import kotlin.concurrent.scheduleAtFixedRate
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var isRepetitive: Boolean = true
+    private lateinit var updateCardTimer: Timer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        asyncDownload(Utils.getRandomId())
-
+        val timeBetweenRefresh = 30_000L;
+        startTimer(timeBetweenRefresh)
         binding.btnNewPokemon.setOnClickListener {
+            updateCardTimer.cancel()
+            updateCardTimer.purge()
             asyncDownload(Utils.getRandomId())
+            startTimer(timeBetweenRefresh)
         }
-
     }
 
     private fun asyncDownload(randPokemonId: Int) {
@@ -53,4 +56,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun startTimer(time: Long) {
+        updateCardTimer = Timer("updatePokemonCard", false)
+        updateCardTimer.scheduleAtFixedRate(0, time) {
+            asyncDownload(Utils.getRandomId())
+        }
+    }
 }
